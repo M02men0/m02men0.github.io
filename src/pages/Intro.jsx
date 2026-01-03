@@ -2,8 +2,8 @@ import React from 'react';
 import { ReactTyped } from 'react-typed';
 
 import IntroPic from "../assets/gallery/my-notion-face.png";
-import GithubIcon from "../assets/icons/github.svg?component";
-import LinkedInIcon from "../assets/icons/linkedin.svg?component";
+import GithubIcon from "../assets/icons/github.svg";
+import LinkedInIcon from "../assets/icons/linkedin.svg";
 
 import "../styles/Intro.css";
 
@@ -73,7 +73,12 @@ function Intro() {
                 className="social-buttons"
                 onClick={() => window.open('https://www.linkedin.com/in/mteeng', '_blank')}
               >
-                <LinkedInIcon className="header-icon" aria-label="LinkedIn Logo" />
+                <img
+                  src={LinkedInIcon}
+                  alt="LinkedIn Logo"
+                  className="header-img"
+                  style={{ width: '50px', height: 'auto' }}
+                />
               </button>
 
               <button
@@ -81,7 +86,12 @@ function Intro() {
                 className="social-buttons"
                 onClick={() => window.open('https://github.com/M02men0', '_blank')}
               >
-                <GithubIcon className="header-icon" aria-label="GitHub Logo" />
+                <img
+                  src={GithubIcon}
+                  alt="GitHub Logo"
+                  className="header-img"
+                  style={{ width: '50px', height: 'auto' }}
+                />
               </button>
             </div>
           </div>

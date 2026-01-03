@@ -139,21 +139,12 @@
     border: none !important;
     background-color: transparent !important;
     border-radius: 15%;
-    color: var(--btn-text, #efefef);
+    
     transition: 0.2s ease-in-out;
     will-change: transform;
     display: inline-block;
     transform-origin: center;
 
-  }
-
-  .header-icon {
-    width: 50px;
-    height: auto;
-    display: inline-block;
-    vertical-align: middle;
-    fill: currentColor;
-    color: inherit;
   }
   
   /*Animate the buttons on hover*/

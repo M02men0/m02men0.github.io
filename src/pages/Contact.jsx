@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/Contact.css';
-import GithubIcon from "../assets/icons/github.svg?component";
-import LinkedInIcon from "../assets/icons/linkedin.svg?component";
-import MailIcon from "../assets/icons/mail.svg?component";
+import GithubIcon from "../assets/icons/github.svg";
+import LinkedInIcon from "../assets/icons/linkedin.svg";
+import mailIcon from "../assets/icons/mail.svg";
 
 
 export default function ContactSection() {
@@ -18,13 +18,13 @@ export default function ContactSection() {
               </h3>
               <div className="text-center">
                 <button className="social-buttons" onClick={() => window.location.href = 'https://github.com/M02men0'}>
-                  <GithubIcon className="social-icon" aria-label="Github Logo" />
+                  <img src={GithubIcon} alt="Github Logo" width="50rem" height="auto" />
                 </button>
                 <button className="social-buttons" onClick={() => window.location.href = 'https://www.linkedin.com/in/mteeng/'}>
-                  <LinkedInIcon className="social-icon" aria-label="Linkedin Logo" />
+                  <img src={LinkedInIcon} alt="Linkedin Logo" width="50rem" height="auto" />
                 </button>
                 <button className="social-buttons" onClick={() => window.location.href = 'mailto:moemenomar2006@gmail.com'}>
-                  <MailIcon className="social-icon" aria-label="Email Logo" />
+                  <img src={mailIcon} alt="Email Logo" width="50rem" height="auto" />
                 </button>
               </div>
             </div>
