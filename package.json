@@ -1,8 +1,8 @@
 {
-  "name": "MeMos-portfolio",
+  "name": "memos-portfolio",
   "homepage": "https://m02men.github.io",
   "private": true,
-  "version": "3.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

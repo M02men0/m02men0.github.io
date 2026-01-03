@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../styles/Projects.css";
 import projects from "../helpers/ProjectList.js";
-import ExternalLinkImage from "../assets/icons/open.svg"
+import ExternalLinkImage from "../assets/icons/open.svg?component"
 
 function Projects() {
   const [filter, setFilter] = useState('hardware');
@@ -57,10 +57,7 @@ function Projects() {
                         <div className="badges-group-large">
                           <a href={project.link}>
                             <span className="badge projects-link-badge">
-                              <img
-                                src={ExternalLinkImage}
-                                className="projects-badge-icons"
-                              />
+                              <ExternalLinkImage className="projects-badge-icons" aria-hidden="true" />
                             </span>
                           </a>
                           <span className="badge skill-badge">{project.badge_1}</span>
@@ -86,7 +83,7 @@ function Projects() {
                       <div className="badges-group-small">
                             <a href={project.link}>
                               <span className="badge projects-link-badge">
-                                <img src={ExternalLinkImage} className="projects-badge-icons" />
+                                <ExternalLinkImage className="projects-badge-icons" aria-hidden="true" />
                               </span>
                             </a>
                             <span className="badge projects-skill-badge">{project.badge_1}</span>

@@ -151,6 +151,9 @@
     background-color: var(--btn-bg);
     color: var(--btn-text);
     transition: 0.3s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .projects-link-badge:hover {
@@ -159,4 +162,8 @@
 
 .projects-badge-icons {
     width: 2rem;
+    height: auto;
+    display: inline-block;
+    fill: currentColor;
+    color: inherit;
 }
