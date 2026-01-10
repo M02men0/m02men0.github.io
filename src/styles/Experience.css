@@ -25,7 +25,9 @@
         width: 100%;
         margin-left: 0;
         margin-right: 0;
-        padding-inline: 20%;
+        /* Reduce side padding so cards span closer to edges */
+        padding-inline: 0.75rem;
+        box-sizing: border-box;
     }
 
     /* Remove margin on the main timeline container to make it a list of blocks */
@@ -33,61 +35,98 @@
         margin: 0;
     }
 
-    /* 2. Show and style the Mobile Block View */
+    /* 2. Show and style the Mobile Block View (card-like, professional) */
     .experience-mobile-view {
-        display: block; /* Show the mobile card structure */
-        background-color: var(--bg-surface-1); /* Dark background from the cards */
+        position: relative;
+        display: grid; /* logo + text columns */
+        grid-template-columns: 84px 1fr;
+        gap: 1rem;
+        align-items: center;
+        background-color: var(--bg-surface-1);
         width: 100%;
-        margin: 10px 0; 
-        padding: 20px;
-        border-radius: 8px;
+        margin: 0.9rem 0;
+        padding: 1rem;
+        border-radius: 14px;
         cursor: pointer;
-        transition: transform 0.2s ease-in-out;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        box-shadow: 0 12px 30px rgba(2,6,23,0.33);
+        min-height: 96px;
+        border: 1px solid rgba(255,255,255,0.02);
     }
-    
+
+    /* Left accent bar to emphasize card feel */
+    .experience-mobile-view::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, var(--accent), var(--accent-primary));
+        border-top-left-radius: 14px;
+        border-bottom-left-radius: 14px;
+    }
+
     .experience-mobile-view:hover {
-        transform: translateY(-5px);
+        transform: translateY(-6px);
+        box-shadow: 0 18px 42px rgba(2,6,23,0.45);
+    }
+
+    .experience-mobile-view:active {
+        transform: translateY(-2px);
     }
 
     .mobile-logo-wrapper {
-        background-color: #efefef; /* White background for the logo block */
-        padding: 15px;
-        border-radius: 6px;
-        margin: 0 auto 15px auto; /* Center and add space below */
-        width: 80%; /* Limit width of the logo block */
-        max-width: 300px;
+        width: 84px;
+        height: 84px;
+        background-color: var(--bg-page-1);
+        padding: 8px;
+        border-radius: 12px;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        box-shadow: none; /* keep it clean */
     }
 
     .mobile-logo-wrapper img {
-        max-width: 100%;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
+        border-radius: 8px;
+        display: block;
     }
 
     .mobile-text-content {
-        text-align: center;
+        text-align: left;
     }
     
     .mobile-text-content h2 {
-        color: #efefef; /* Organization name */
-        font-size: 1.5rem;
-        margin-bottom: 5px;
+        color: var(--text-primary-1);
+        font-size: 1.05rem;
+        margin: 0 0 6px 0;
+        font-weight: 700;
+        line-height: 1.05;
     }
 
     .mobile-text-content h3 {
-        color: #978249; /* Role color (using accent) */
-        font-style: normal;
-        font-size: 1.1rem;
-        margin-top: 0;
-        margin-bottom: 5px;
+        color: var(--text-secondary-1);
+        font-size: 0.95rem;
+        margin: 0;
+        font-weight: 600;
+        opacity: 0.95;
     }
     
     .mobile-text-content .duration-text {
-        color: #ccc; /* Duration color */
-        font-size: 0.9rem;
+        color: var(--text-secondary-1);
+        font-size: 0.82rem;
+        margin-top: 8px;
+        opacity: 0.9;
+    }
+
+    /* Make the card stack nicely on very small screens */
+    @media (max-width: 360px) {
+        .experience-mobile-view { grid-template-columns: 72px 1fr; padding: 0.8rem; min-height: 84px; }
+        .mobile-logo-wrapper { width: 72px; height: 72px; }
     }
 }
 
@@ -134,33 +173,114 @@
 
 .experience-large-card {
     background-color: transparent;
-    width: 80%;
+    width: 90%;
+    max-width: 1100px;
     height: auto;
     border: none;
     margin-left: auto;
     margin-right: auto;
-    transition: 0.2s ease-in-out;
+    transition: transform 0.25s ease-in-out;
     cursor: pointer; /* Add pointer cursor to indicate clickability */
+    padding: 0.5rem 0;
   }
 
 .experience-large-card:hover{
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
+.experience-large-card:focus-within {
+    outline: 2px solid rgba(0,0,0,0.08);
+    outline-offset: 6px;
+} 
+
   .experience-large-card-preview {
+    position: relative;
     grid-area: revert;
     width: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 5px;
-    box-shadow: inset 100px 0 4em 2em #212122;
-    filter: drop-shadow(5px 5px 3px #212222);
-    padding: 1% 5% 0;
-    background-color: #bbb;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 2rem 2.5rem 1.5rem;
+    background-size: cover;
+    background-position: center;
+    min-height: 20rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     grid-area: 1/1!important;
-    min-height: 22rem;
-    box-shadow: inset 100px 0 15em 2em var(--bg-surface-1)!important;  
+}
+
+/* Overlay to ensure text contrast on top of images */
+.experience-large-card-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 35%, rgba(0,0,0,0.12) 60%, rgba(0,0,0,0.0) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Ensure headings sit above the overlay */
+.experience-large-card-preview h2,
+.experience-large-card-preview h3,
+.experience-large-card-preview .sourcesanspro-text {
+    position: relative;
+    z-index: 2;
+    color: var(--text-primary-1);
+    text-shadow: 0 3px 12px rgba(0,0,0,0.6);
+}
+
+.experience-large-card-preview h3 {
+    color: var(--text-secondary-1);
+}
+
+/* Place the logo badge in the bottom-left (bigger, more prominent) */
+.experience-large-card-preview .btn-skills {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    z-index: 2;
+    width: 120px;
+    height: 120px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 14px;
+    background-color: var(--bg-surface-2, rgba(255,255,255,0.06));
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+}
+
+/* Ensure the logo fills the badge neatly */
+.experience-large-card-preview .btn-skills img,
+.experience-large-card-preview .btn-skills .timeline-icon {
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* Smaller badge on narrow screens */
+@media (max-width: 768px) {
+    .experience-large-card-preview .btn-skills {
+        width: 88px;
+        height: 88px;
+        left: 1rem;
+        bottom: 1rem;
     }
+    .experience-large-card-preview .btn-skills img,
+    .experience-large-card-preview .btn-skills .timeline-icon {
+        width: calc(100% - 0.6rem);
+        height: calc(100% - 0.6rem);
+    }
+}
+
+/* Slightly lift the image on hover */
+.experience-large-card:hover .experience-large-card-preview {
+    transform: translateY(-6px) scale(1.007);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.55);
+} 
 
 /* =========== Modal Styles ========== */
 
@@ -233,16 +353,16 @@
 }
 
 .modal-info-text h2 {
-    color: #978249;
+    color: var(--text-primary-1);
     font-size: 2rem; /* Adjusted for banner size */
     margin-bottom: 0.25rem;
 }
 
 .modal-info-text h3 {
-    color: #ccc;
+    color: var(--text-secondary-1);
     margin-top: 0;
     font-size: 1.1rem; /* Adjusted for banner size */
-}
+} 
 
 .modal-description-content {
     padding: 2rem; /* Add padding to the description area */
@@ -317,16 +437,22 @@
 .modal-link {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #978249;
-    color: #2b2b2b;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.2s;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 .modal-link:hover {
-    background-color: #b0955b;
+    background-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+/* Gallery background to match theme */
+.modal-gallery-section .carousel {
+    background-color: var(--bg-surface-2);
 }
 
 /* =========== Modal Gallery Styles - CAROUSEL UPDATE (FINAL CLEANUP) ========== */

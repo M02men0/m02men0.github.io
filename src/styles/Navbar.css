@@ -2,7 +2,7 @@
   /* ========== Nav bar ========== */
   .nav-link {
     font-family: "Montserrat";
-    color: #efefef!important;
+    color: var(--text-secondary-1) !important;
     font-size: 125%;
     position: relative;
   }
@@ -17,17 +17,39 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #efefef;
+    background-color: var(--text-secondary-1);
     transform: scaleX(0);
     transition: transform 0.3s ease;
   }
   
   .nav-link:hover::before {
     /*Transform the line so it becomes visible*/
-    color: #efefef !important;
+    color: var(--text-secondary-1) !important;
     transform: scaleX(1);
   }
   
   .navbar-nav li {
     padding: 0rem 1rem;
+  }
+
+  /* Theme picker styles */
+  .theme-picker select {
+    background-color: transparent;
+    border: 1px solid var(--text-secondary-1);
+    color: var(--text-primary-1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-family: "Montserrat";
+  }
+
+  .theme-picker select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-light);
+  }
+
+  .visually-hidden { /* simple accessible label */
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; border: 0; padding: 0; margin: -1px;
   }

@@ -12,17 +12,13 @@ function About() {
               <h1 className="section-title" style={{ color: "var(--text-primary-1)" }}>Hello!</h1>
               <div className="line-break" style={{ backgroundColor: "var(--text-primary-1)" }}></div>
               <p className="about-text">
-                Hello! My name is <b>Moemen Elgazzar</b>, I'm a first year engineering student at the university of waterloo. 
-                I'm interested in robotics, software, hardware, all of it really.
-                In my free time i like to work on side projects, explore the wilderness, travel. doung all that, i allways take pictures.
-                I take photos whever i can. Beautiful archetecture, nature, wildlife, motorsports. i enjoy it all 📸📸📸
+                Hello! I'm <b>Moemen Elgazzar</b>, a first-year Computer Engineering student at the University of Waterloo.
+                I'm interested in robotics, automation, vehicles, and embeded systems.
+                I tend to enjoy working on projects that combine both software and hardware.                 
               </p>
               <p className="about-text">
-                In my free time i like to work on side projects, explore the wilderness, travel. doung all that, i allways take pictures.
-                I take photos whever i can. Beautiful archetecture, nature, wildlife, motorsports. i enjoy it all 📸📸📸 
-              </p>
-              <p className="about-text">
-                This winter, im working on securing my first co-op job. I've worked for the past three years, though not teck related. 
+                In my free time, I work on side projects, explor the outdoors, and travel. 
+                Wherever I go, I take my camera with me. I photograph architecture, nature, wildlife, and motorsports - basically anything that catches my eye 📸 
               </p>
             </div>
 

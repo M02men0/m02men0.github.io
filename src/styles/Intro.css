@@ -150,7 +150,14 @@
   /*Animate the buttons on hover*/
   .social-buttons:hover {
     background-color: #0000001a !important;
-    transform: scale(1.05);
+    transform: scale(var(--btn-hover-scale));
+  }
+
+  .social-icon {
+    width: 50px;
+    height: auto;
+    color: var(--social-icon);
+    display: inline-block;
   }
   
   .chevron-down {

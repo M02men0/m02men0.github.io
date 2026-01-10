@@ -18,6 +18,7 @@
   --accent-primary: #a5915f;
   --accent-shadow: #978249;
   --accent: #978249;
+  --social-icon: var(--accent);
 
 
   /* Buttons */
@@ -165,4 +166,67 @@
   --badge-hover-scale: 1.05;
 }
 
+[data-theme="sunset"] {
+  /* Backgrounds */
+  --bg-page-1: #0f0826;   /* deep indigo */
+  --bg-page-2: #fff6ef;   /* soft peach */
+
+  --bg-surface-1: #221834; /* plum */
+  --bg-surface-2: #fff1e6; /* warm surface */
+
+  /* Text */
+  --text-primary-1: #fff7f3;   /* near-white */
+  --text-secondary-1: #e6cfc6; /* warm muted */
+
+  --text-primary-2: #fb7185;   /* coral accent */
+  --text-secondary-2: #f97316; /* orange */
+
+  /* Accents */
+  --accent-light: #ffd6b5;   /* pale peach */
+  --accent-primary: #fb7185; /* coral */
+  --accent-shadow: #9b2c63;  /* deep plum */
+  --accent: #f97316;
+
+  /* Buttons */
+  --btn-bg: #f97316;
+  --btn-text: #ffffff;
+  --btn-hover-scale: 1.05;
+
+  /* Badges */
+  --badge-bg: #fb7185;
+  --badge-text: #ffffff;
+  --badge-hover-scale: 1.05;
+}
+
+[data-theme="forest"] {
+  /* Backgrounds */
+  --bg-page-1: #06281e;   /* deep green */
+  --bg-page-2: #eaf7f0;   /* pale mint */
+
+  --bg-surface-1: #0b3b30; /* rich forest */
+  --bg-surface-2: #cfece2; /* soft surface */
+
+  /* Text */
+  --text-primary-1: #e6fff7;   /* near-white mint */
+  --text-secondary-1: #99d8c9; /* cool mint */
+
+  --text-primary-2: #2dd4bf;   /* mint accent */
+  --text-secondary-2: #059669; /* deep mint */
+
+  /* Accents */
+  --accent-light: #a7f3d0;   /* light mint */
+  --accent-primary: #10b981; /* green */
+  --accent-shadow: #065f46;  /* deep forest */
+  --accent: #059669;
+
+  /* Buttons */
+  --btn-bg: #10b981;
+  --btn-text: #ffffff;
+  --btn-hover-scale: 1.05;
+
+  /* Badges */
+  --badge-bg: #059669;
+  --badge-text: #ffffff;
+  --badge-hover-scale: 1.05;
+}
 

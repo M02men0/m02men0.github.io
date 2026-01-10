@@ -2,8 +2,8 @@ import React from 'react';
 import { ReactTyped } from 'react-typed';
 
 import IntroPic from "../assets/gallery/my-notion-face.png";
-import GithubIcon from "../assets/icons/github.svg";
-import LinkedInIcon from "../assets/icons/linkedin.svg";
+import GithubIcon from "../components/icons/Github";
+import LinkedInIcon from "../components/icons/LinkedIn";
 
 import "../styles/Intro.css";
 
@@ -50,7 +50,6 @@ function Intro() {
           
           {/* Left side: Text content */}
           <div className="col-sm-6 text-left">
-            <p className="typewriter-title" style={{ marginTop: '10rem' }}>🚧🚧Website still under construction 🚧🚧</p>
             <h1 className="name">MOEMEN ELGAZZAR</h1>
 
             <div className="typewriter-title" style={{ marginTop: '1rem' }}>
@@ -73,12 +72,7 @@ function Intro() {
                 className="social-buttons"
                 onClick={() => window.open('https://www.linkedin.com/in/mteeng', '_blank')}
               >
-                <img
-                  src={LinkedInIcon}
-                  alt="LinkedIn Logo"
-                  className="header-img"
-                  style={{ width: '50px', height: 'auto' }}
-                />
+                <LinkedInIcon className="social-icon" ariaLabel="LinkedIn Logo" />
               </button>
 
               <button
@@ -86,12 +80,7 @@ function Intro() {
                 className="social-buttons"
                 onClick={() => window.open('https://github.com/M02men0', '_blank')}
               >
-                <img
-                  src={GithubIcon}
-                  alt="GitHub Logo"
-                  className="header-img"
-                  style={{ width: '50px', height: 'auto' }}
-                />
+                <GithubIcon className="social-icon" ariaLabel="GitHub Logo" />
               </button>
             </div>
           </div>

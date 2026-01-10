@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import "../styles/Projects.css";
 import projects from "../helpers/ProjectList.js";
-import ExternalLinkImage from "../assets/icons/open.svg"
+import ExternalLink from "../components/icons/ExternalLink"
 
 function Projects() {
-  const [filter, setFilter] = useState('hardware');
+  const [filter, setFilter] = useState('embedded');
 
 
   const filteredProjects = filter === 'all' 
@@ -12,12 +12,13 @@ function Projects() {
     : projects.filter(p => p.group === filter);
 
     const filters = [
-      { key: 'hardware', size: 'small', label: 'Hardware', icon: 'memory' },
-      { key: 'software', size: 'small', label: 'Software', icon: 'code' },
-      { key: 'other',    size: 'small', label: 'Other',    icon: 'terminal' },
+      { key: 'embedded', size: 'small', label: 'Embedded systems', icon: 'memory' },
+      { key: 'software', size: 'small', label: 'Software', icon: 'code' }
+      /*{ key: 'other',    size: 'small', label: 'Other',    icon: 'terminal' },*/
     ];
     
-    const currentFilter = filters.find(f => f.key === filter);
+    // fallback ensures `currentFilter` is never undefined
+    const currentFilter = filters.find(f => f.key === filter) || { size: 'small' };
   
   return (
     <>
@@ -55,12 +56,9 @@ function Projects() {
                           <p className="card-text">{project.description}</p>
                         </div>
                         <div className="badges-group-large">
-                          <a href={project.link}>
+                          <a href={project.link} target="_blank" rel="noopener noreferrer">
                             <span className="badge projects-link-badge">
-                              <img
-                                src={ExternalLinkImage}
-                                className="projects-badge-icons"
-                              />
+                              <ExternalLink className="projects-badge-icons" ariaLabel={`Open ${project.title} in new tab`} />
                             </span>
                           </a>
                           <span className="badge skill-badge">{project.badge_1}</span>
@@ -68,7 +66,7 @@ function Projects() {
                         </div>
                       </div>
                       <div className="col-lg-7">
-                        <img className={project.imageType} src={project.image} alt={project.title} loading="lazy"/>
+                        <img className={`card-img-projects ${project.imageType || ''}`} src={project.image} alt={project.title} loading="lazy" />
                       </div>
                     </div>
                   </div>
@@ -78,15 +76,17 @@ function Projects() {
                 return (
                   <div key={project.id} className="col-lg-4 mb-2 card-container">
                     <div className="card projects-small-cards">
-                      <img src={project.image} alt={project.title} id={project.imageType} className="small-cards-img" loading="lazy"/>
+                      <div className="project-image-wrapper">
+                        <img src={project.image} alt={project.title} className="project-card-image" loading="lazy" />
+                      </div>
                       <div className="card-body">
-                        <h2>{project.title}</h2>
+                        <h2 className="project-title">{project.title}</h2>
                         <p className="card-text">{project.description}</p>
                       </div>
                       <div className="badges-group-small">
-                            <a href={project.link}>
+                            <a href={project.link} target="_blank" rel="noopener noreferrer">
                               <span className="badge projects-link-badge">
-                                <img src={ExternalLinkImage} className="projects-badge-icons" />
+                                <ExternalLink className="projects-badge-icons" ariaLabel={`Open ${project.title} in new tab`} />
                               </span>
                             </a>
                             <span className="badge projects-skill-badge">{project.badge_1}</span>
