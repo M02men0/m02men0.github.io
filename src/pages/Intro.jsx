@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactTyped } from 'react-typed';
 
-import IntroPic from "../assets/gallery/my-notion-face.png";
+import IntroPic from "../assets/gallery/Selfie_01.JPG";
 import GithubIcon from "../components/icons/Github";
 import LinkedInIcon from "../components/icons/LinkedIn";
 
@@ -55,11 +55,11 @@ function Intro() {
             <div className="typewriter-title" style={{ marginTop: '1rem' }}>
               <ReactTyped
                 strings={[
-                  '🖥️Computer Engineering @ University Of Waterloo',
-                  '👨‍💻Seeking Spring 2026 CO-OP jobs',
+                  '🖥️ Computer Engineering @ <strong>University of Waterloo</strong>', 
+                  '👨‍💻 Seeking Spring 2026 CO-OP'
                 ]}
-                typeSpeed={35}
-                backSpeed={30}
+                typeSpeed={30}
+                backSpeed={15}
                 loop
                 backDelay={3000}
               />
@@ -89,7 +89,7 @@ function Intro() {
           <div className="col-sm-4 text-center d-none d-sm-block">
             <img
               src={IntroPic}
-              alt="Graduation Picture"
+              alt="Introduction Picture"
               className="intro-image img-fluid"
               loading="eager"
             />

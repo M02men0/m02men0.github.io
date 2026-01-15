@@ -46,7 +46,7 @@ function ExperienceModal({ experience, onClose }) {
                             className="modal-logo-link" // New class for styling the clickable container
                             onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking the logo link
                         >
-                            <div className="btn btn-skills">
+                            <div className="modal-logo-container">
                                 <img 
                                     src={experience.logo} 
                                     alt={`${experience.org} Logo`} 
@@ -92,9 +92,7 @@ function ExperienceModal({ experience, onClose }) {
                     <ul className="sourcesanspro-text" style={{ listStyleType: 'disc', paddingLeft: '20px', fontSize: '1.1rem', lineHeight: '1.6' }}>
                         {experience.description && Array.isArray(experience.description) && experience.description.length > 0 ? (
                             experience.description.map((point, index) => (
-                                <li key={index} style={{ marginBottom: '0.5rem' }}>
-                                    {point}
-                                </li>
+                                <li key={index} style={{ marginBottom: '0.5rem' }} dangerouslySetInnerHTML={{ __html: point }} />
                             ))
                         ) : (
                             <li style={{ marginBottom: '0.5rem' }}>

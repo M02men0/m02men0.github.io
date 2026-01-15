@@ -204,14 +204,14 @@
   --bg-page-2: #eaf7f0;   /* pale mint */
 
   --bg-surface-1: #0b3b30; /* rich forest */
-  --bg-surface-2: #cfece2; /* soft surface */
+  --bg-surface-2: #10b981; /* soft surface */
 
   /* Text */
   --text-primary-1: #e6fff7;   /* near-white mint */
-  --text-secondary-1: #99d8c9; /* cool mint */
+  --text-secondary-1: #9df2de; /* cool mint */
 
   --text-primary-2: #2dd4bf;   /* mint accent */
-  --text-secondary-2: #059669; /* deep mint */
+  --text-secondary-2: #e6fff7; /* deep mint */
 
   /* Accents */
   --accent-light: #a7f3d0;   /* light mint */

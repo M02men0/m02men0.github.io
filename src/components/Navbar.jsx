@@ -18,43 +18,63 @@ function Navbar() {
   }, [theme]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark sticky-top" style={{ backgroundColor: 'var(--bg-surface-1)'}}>
-      <div className="container-fluid">
-        <a href="#" className="navbar-brand" style={{ color: 'var(--text-primary-1)', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '1.5rem' }}>
-          MOEMEN ELGAZZAR
-        </a>
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark sticky-top" style={{ backgroundColor: 'var(--bg-surface-1)'}}>
+        <div className="container-fluid">
+          <a href="#" className="navbar-brand" style={{ color: 'var(--text-primary-1)', fontFamily: 'Montserrat', fontWeight: 'bold', fontSize: '1.5rem' }}>
+            MOEMEN ELGAZZAR
+          </a>
 
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#main-nav" 
-          aria-controls="main-nav" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#main-nav" 
+            aria-controls="main-nav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        <div id="main-nav" className="collapse navbar-collapse justify-content-end align-center">
-          <ul className="navbar-nav">
-            <li className="nav-item"><a href="#about" className="nav-link">About</a></li>
-            <li className="nav-item"><a href="#projects" className="nav-link">Projects</a></li>
-            <li className="nav-item"><a href="#experience" className="nav-link">Experience</a></li>
-            <li className="nav-item"><a href="#skills" className="nav-link">Skills</a></li>
-            <li className="nav-item"><a href="#contact" className="nav-link">Contact</a></li>
+          <div id="main-nav" className="collapse navbar-collapse justify-content-end align-center">
+            <ul className="navbar-nav">
+              <li className="nav-item"><a href="#about" className="nav-link">About</a></li>
+              <li className="nav-item"><a href="#projects" className="nav-link">Projects</a></li>
+              <li className="nav-item"><a href="#experience" className="nav-link">Experience</a></li>
+              <li className="nav-item"><a href="#skills" className="nav-link">Skills</a></li>
+              <li className="nav-item"><a href="#contact" className="nav-link">Contact</a></li>
+              <li className="nav-item resume"><a href="#" className="nav-link" data-bs-toggle="modal" data-bs-target="#resumeModal">Resume</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-            <li className="nav-item theme-picker">
-              <label htmlFor="theme-select" className="visually-hidden">Theme</label>
-              <select id="theme-select" aria-label="Select theme" value={theme} onChange={(e) => setTheme(e.target.value)}>
-                {THEMES.map(t => (
-                  <option key={t} value={t}>{t}</option>
-                ))}
-              </select>
-            </li>
-          </ul>
+      {/* Resume Selection Modal */}
+      <div className="modal fade" id="resumeModal" tabIndex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            {/* Header */}
+            <div className="modal-header border-0">
+              <h5 className="modal-title" id="resumeModalLabel">Resume</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            {/* Body */}
+            <div className="modal-body text-center">
+              <a href="./files/Moemen_Elgazzar_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn m-2">
+                Download PDF
+              </a>
+            </div>
+
+            {/* Footer */}
+            <div className="modal-footer border-0 justify-content-center">
+              <p></p>
+            </div> 
+
+          </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
 

@@ -13,8 +13,9 @@ function Projects() {
 
     const filters = [
       { key: 'embedded', size: 'small', label: 'Embedded systems', icon: 'memory' },
-      { key: 'software', size: 'small', label: 'Software', icon: 'code' }
-      /*{ key: 'other',    size: 'small', label: 'Other',    icon: 'terminal' },*/
+      { key: 'robotics', size: 'small', label: 'Robotics', icon: 'smart_toy'},
+      /*{ key: 'software', size: 'small', label: 'Software', icon: 'code' },
+      { key: 'other',    size: 'small', label: 'Other',    icon: 'terminal' }*/
     ];
     
     // fallback ensures `currentFilter` is never undefined

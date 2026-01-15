@@ -18,23 +18,33 @@ const experiences = [
     id: 4,
     org: 'University Of Waterloo',
     role: 'BASc in Computer Engineering',
-    duration: 'Sept 2025 - Present',
+    duration: 'Since September 2025',
     image: UWSign,
     logo: UWLogo,
-    link: 'https://uwaterloo.ca/'
+    link: 'https://uwaterloo.ca/',
+    description: [
+      'Current courses: ',
+      'ECE 106 - Electricity and Magnetism  ',
+      'ECE 108 - Discrete Mathematics and Logic 1  ',
+      'ECE 124 - Digital Circuits and Systems  ',
+      'ECE 140 - Linear Circuits  ',
+      'MATH 119 - Calculus 2 for Engineering'
+    ]
   },    
   {
     id: 3,
-    org: 'University of Waterloo Formula Electric',
+    org: 'UWaterloo Formula Electric',
     role: 'Suspention Subteam Member',
-    duration: 'December 2024 - April 2025',
+    duration: 'January 2026 - present, January 2025 - April 2025',
     image: UWFEImage1,
     logo: UWFELogo,
     link: '',
     description: [
-      '.. Coming Soon ..'
+      'Worked as part of the suspension sub-team designing and fabricating components for the UW Formula-style electric race car',
+      'Designed and fabricated mechanical parts according to team drawings and tolerances',
+      'Gained hands-on experience with machine shop tools and manufacturing processes'
     ],
-    skills: ['Skill 1', 'skill 2', 'skill 3'],
+    skills: ['Mechanical fabrication', 'Design iteration', 'Machine shop protocol'],
     gallery: [UWFEImage1, UWFEImage2]
 
     },
@@ -47,8 +57,8 @@ const experiences = [
     logo: SoFLogo,
     link: '',
     description: [
-      'COMING',
-      'SOON...'
+      'Worked in a fast-paced environment handling, restocking, and rotating inventory',
+      'Assisted customers and guaranteed their satisfaction'
     ],
     skills: ['Teamwork', 'Heavy freight handeling', 'Costumer Satisfaction']
     },
@@ -60,10 +70,12 @@ const experiences = [
     image: YIGImage,
     logo: YIGLogo,
     description: [
-      'COMING',
-      'SOON...'
+      'Started as a clerk and later took on shift supervisor responsibilities',
+      'Trained new employees and helped run daily operations',
+      'Handled store opening and closing tasks',
+      'Guaranteed customer satisfaction'
     ],
-    skills: ['Teamwork', 'Heavy freight handeling', 'Shipping & Recieving', 'Costumer Satisfaction']
+    skills: ['Leadership', 'Inventory management', 'Shipping & Recieving', 'Custumer Satisfaction']
     }
   ];
 

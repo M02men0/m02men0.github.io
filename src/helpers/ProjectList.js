@@ -1,7 +1,8 @@
 
 import AthanPi from "../assets/gallery/Pi.jpg";
 import M4 from "../assets/gallery/M4.jpg";
-import Arduino from "../assets/gallery/Arduino_uno.png";
+import robo from "../assets/gallery/robot.jpg"
+import schem from "../assets/gallery/schem.png";
 
 
 const projects = [
@@ -16,7 +17,7 @@ const projects = [
       badge_1: 'Rasberry Pi',
       badge_2: 'Python',
     },
-    {
+    /*{
       id: 2,
       title: "Robotic arm tracer",
       group: "software",
@@ -26,19 +27,30 @@ const projects = [
       link: "https://github.com/M02men0",
       badge_1: "Arduino",
       badge_2: "C++",
-    },
+    },*/
 
     {
-      id: 10,
+      id: 3,
       title: "Smart-Water",
       group: "embedded",
       description: "An automated plant watering system based on an STM32 Microcontroller.",
-      image: Arduino,
+      image: schem,
       imageType: 'landscape-img',
       link: "https://github.com/SenthilShelke/Smart-Water",
       badge_1: "STM32",
       badge_2: "Schematic design",
     },
+  
+    {
+      id: 4,
+      title: "First Global: Ocean opportunities - Team Kuwait",
+      group: "robotics",
+      description: 
+      "Represented Kuwait in the 2019 First Global Challenge: 'Ocean Opportunbities' held in Dubai, UAE",
+      image: robo,
+      imageType: 'landscape-img',
+      badge_1: "Problem analysis",
+    }
   ];
 
   export default projects;

@@ -79,7 +79,7 @@
     .mobile-logo-wrapper {
         width: 84px;
         height: 84px;
-        background-color: var(--bg-page-1);
+        background-color: #fff;
         padding: 8px;
         border-radius: 12px;
         display: flex;
@@ -215,7 +215,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.36) 35%, rgba(0,0,0,0.12) 60%, rgba(0,0,0,0.0) 100%);
+    background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.70) 35%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.0) 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -247,7 +247,7 @@
     justify-content: center;
     padding: 0.5rem;
     border-radius: 14px;
-    background-color: var(--bg-surface-2, rgba(255,255,255,0.06));
+    background-color: #fff;
     box-shadow: 0 8px 20px rgba(0,0,0,0.45);
     backdrop-filter: blur(4px);
 }
@@ -282,6 +282,23 @@
     box-shadow: 0 16px 40px rgba(0,0,0,0.55);
 } 
 
+/* =========== Modal Animation ========== */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* =========== Modal Styles ========== */
 
 .modal-overlay {
@@ -296,6 +313,7 @@
     align-items: center;
     z-index: 1050; /* Changed from 1000 to 1050 to ensure it's on top of the navbar */
     overflow-y: auto;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .modal-content {
@@ -311,6 +329,7 @@
     position: relative;
     transform: scale(1);
     transition: transform 0.3s ease-out;
+    animation: slideInUp 0.4s ease-out;
     
     /* Remove the old inline style or hardcoded gradient that might conflict */
 }
@@ -329,8 +348,8 @@
     width: 150px; /* INCREASED SIZE */
     height: 150px; /* INCREASED SIZE */
     padding: 10px;
-    background-color: var(--bg-page-1);
-    border-radius: 8px;
+    background-color: #fff;
+    border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
