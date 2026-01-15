@@ -13,11 +13,11 @@ function About() {
               <div className="line-break" style={{ backgroundColor: "var(--text-primary-1)" }}></div>
               <p className="about-text">
                 Hello! I'm <b>Moemen Elgazzar</b>, a first-year Computer Engineering student at the University of Waterloo.
-                I'm interested in robotics, automation, vehicles, and embeded systems.
+                I'm interested in robotics, automation, vehicles, and embedded systems.
                 I tend to enjoy working on projects that combine both software and hardware.                 
               </p>
               <p className="about-text">
-                In my free time, I work on side projects, explor the outdoors, and travel. 
+                In my free time, I work on side projects, explore the outdoors, and travel. 
                 Wherever I go, I take my camera with me. I photograph architecture, nature, wildlife, and motorsports - basically anything that catches my eye 📸 
               </p>
             </div>
