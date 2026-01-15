@@ -1,8 +1,8 @@
 
 import AthanPi from "../assets/gallery/Pi.jpg";
 import M4 from "../assets/gallery/M4.jpg";
-import robo from "../assets/gallery/robot.jpg"
-import schem from "../assets/gallery/schem.png";
+import robo from "../assets/gallery/robot.jpg";
+import schem from "../assets/gallery/Schem.png";
 
 
 const projects = [
@@ -10,18 +10,18 @@ const projects = [
       id: 1,
       title: 'Athan Pi',
       group: 'embedded',
-      description: 'A a Linux-based Python system running on a Raspberry Pi Zero 2 W. Plays athan and reminders @ precice timings.',
+      description: 'A Linux-based Python system running on a Raspberry Pi Zero 2 W. Plays athan and reminders @ precice timings.',
       image: AthanPi,
       imageType: 'landscape-img',
       link: 'https://github.com/M02men0/athanPi',
-      badge_1: 'Rasberry Pi',
+      badge_1: 'Raspberry Pi',
       badge_2: 'Python',
     },
     /*{
       id: 2,
       title: "Robotic arm tracer",
       group: "software",
-      description: "Project still in the works, Working on a defence gymbal arm that tracks drones, and has an airsoft gun monted on top.",
+      description: "Project still in the works, working on a defence gymbal arm that tracks drones, and has an airsoft gun mounted on top.",
       image: M4,
       imageType: 'landscape-img',
       link: "https://github.com/M02men0",
@@ -46,7 +46,7 @@ const projects = [
       title: "First Global: Ocean opportunities - Team Kuwait",
       group: "robotics",
       description: 
-      "Represented Kuwait in the 2019 First Global Challenge: 'Ocean Opportunbities' held in Dubai, UAE",
+      "Represented Kuwait in the 2019 First Global Challenge: 'Ocean Opportunities' held in Dubai, UAE",
       image: robo,
       imageType: 'landscape-img',
       badge_1: "Problem analysis",
