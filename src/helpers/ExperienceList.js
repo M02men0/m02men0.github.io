@@ -34,7 +34,7 @@ const experiences = [
   {
     id: 3,
     org: 'UWaterloo Formula Electric',
-    role: 'Suspention Subteam Member',
+    role: 'Suspension Subteam Member',
     duration: 'January 2026 - present, January 2025 - April 2025',
     image: UWFEImage1,
     logo: UWFELogo,
@@ -60,13 +60,13 @@ const experiences = [
       'Worked in a fast-paced environment handling, restocking, and rotating inventory',
       'Assisted customers and guaranteed their satisfaction'
     ],
-    skills: ['Teamwork', 'Heavy freight handeling', 'Costumer Satisfaction']
+    skills: ['Teamwork', 'Heavy freight handling', 'Customer Satisfaction']
     },
     {
     id: 1,
     org: 'Your Independent Grocer',
     role: 'Grocery Clerk / Shift Supervisor',
-    duration: 'November 2021- june 2023',
+    duration: 'November 2021- June 2023',
     image: YIGImage,
     logo: YIGLogo,
     description: [
@@ -75,7 +75,7 @@ const experiences = [
       'Handled store opening and closing tasks',
       'Guaranteed customer satisfaction'
     ],
-    skills: ['Leadership', 'Inventory management', 'Shipping & Recieving', 'Custumer Satisfaction']
+    skills: ['Leadership', 'Inventory management', 'Shipping & Receiving', 'Customer Satisfaction']
     }
   ];
 
