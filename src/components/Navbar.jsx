@@ -61,7 +61,7 @@ function Navbar() {
 
             {/* Body */}
             <div className="modal-body text-center">
-              <a href="./files/Moemen_Elgazzar_Resume.pdf" target="_blank" rel="noopener noreferrer" className="btn m-2">
+              <a href="./files/Moemen_Elgazzar_Resume_V3.pdf" target="_blank" rel="noopener noreferrer" className="btn m-2">
                 Download PDF
               </a>
             </div>
