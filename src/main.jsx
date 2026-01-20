@@ -1,6 +1,6 @@
 import './styles/main.css';
 import './styles/theme.css';
-document.documentElement.dataset.theme = "light2";
+document.documentElement.dataset.theme = "forest";
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
