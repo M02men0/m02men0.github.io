@@ -1,53 +1,79 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <link rel="icon" type="image/png" href="public/assets/favicon.png" />
-
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Moemen Elgazzar</title>
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="public/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-
-    <!-- Google Verification -->
-    <meta name="google-site-verification" content="9K4znNcWSkXvRzE3oqRXqDW6pe8ajNFyjIwewh8pdXE" />
-
-    <!-- Meta tags for social sharing -->
-    <meta name="description" content="Hi! I'm Moemen, a Computer Engineering student at the University Of Waterloo in Canada. Welcome to my website!">
-    <meta property="og:title" content="Moemen Elgazzar">
-    <meta property="og:description" content="Hi! I'm Moemen, a Computer Engineering student at the University Of Waterloo in Canada. Welcome to my website!">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="9K4znNcWSkXvRzE3oqRXqDW6pe8ajNFyjIwewh8pdXE">
+  <meta name="description" content="Moemen Elgazzar’s engineering portfolio. Embedded systems, computer vision and software projects at the University of Waterloo.">
+  <meta property="og:title" content="Moemen Elgazzar · Computer Engineering">
+  <title>Moemen Elgazzar · Computer Engineering</title>
+  <link rel="icon" href="public/assets/favicon.png">
   <link rel="stylesheet" href="src/styles/portfolio.css">
-  </head>
-  <body>
+  <script defer src="src/portfolio.js"></script>
+</head>
+<body>
 <main id="top">
-    <header><a class="brand" href="#top" aria-label="Moemen Elgazzar, home">me<span>.</span></a>
-      <nav aria-label="Main navigation"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav></header>
-    <section class="hero" id="about"><div><small>Computer Engineering · University of Waterloo</small>
-      <h1>Moemen<br/><i>Elgazzar</i><span>.</span></h1>
-      <p>I build projects where hardware meets software, from embedded systems to robotics.</p>
-      <a class="button" href="#projects">Explore projects ↓</a> <a class="resume" href="public/files/Moemen_Elgazzar_Resume_V3.pdf">Résumé ↗</a></div>
-      <img class="portrait" src="src/assets/gallery/Selfie_01.JPG" alt="Moemen Elgazzar"/></section>
-    <section id="projects"><h2>Selected projects</h2><div class="cards"><article><img loading="lazy" src="src/assets/gallery/Pi.jpg" alt="Athan Pi"><div class="cardbody"><small>Raspberry Pi · Python</small><h3><a href="https://github.com/M02men0/athanPi">Athan Pi ↗</a></h3><p>A Raspberry Pi Zero 2 W running Python on Linux plays the athan and reminders at scheduled times.</p></div></article>
-<article><img loading="lazy" src="src/assets/gallery/Schem.png" alt="Smart-Water"><div class="cardbody"><small>STM32 · Schematic design</small><h3><a href="https://github.com/SenthilShelke/Smart-Water">Smart-Water ↗</a></h3><p>An STM32 microcontroller automates plant watering.</p></div></article>
-<article><img loading="lazy" src="src/assets/gallery/robot.jpg" alt="FIRST Global · Team Kuwait"><div class="cardbody"><small>Robotics · Problem analysis</small><h3>FIRST Global · Team Kuwait</h3><p>I represented Kuwait at the 2019 FIRST Global Challenge, Ocean Opportunities, in Dubai.</p></div></article></div></section>
-    <section id="experience"><h2>Experience & education</h2><details><summary><img src="src/assets/logos/UniversityOfWaterloo_logo_vert_rgb.png" alt=""><div><small>September 2025 – present</small><h3>University of Waterloo</h3><p>BASc in Computer Engineering</p></div></summary><div class="detail"><p>Coursework includes electricity and magnetism, discrete mathematics and logic, digital circuits and systems, linear circuits, and calculus.</p><a href="https://uwaterloo.ca/">University website ↗</a></div></details>
-<details><summary><img src="src/assets/logos/UWFE-black.webp" alt=""><div><small>January – April 2025 · January 2026 – present</small><h3>UWaterloo Formula Electric</h3><p>Suspension Subteam Member</p></div></summary><div class="detail"><p>I design and fabricate suspension components for the team’s electric race car, working from engineering drawings and machining parts to specified tolerances.</p><img loading="lazy" src="src/assets/gallery/UWFE-1.webp" alt="Formula Electric team photo"><img loading="lazy" src="src/assets/gallery/UWFE-2.webp" alt="Formula Electric project photo"></div></details></section>
-    <section id="skills"><h2>Skills & interests</h2><div class="tags"><span>C++</span><span>Python</span><span>Visual Studio Code</span><span>Arduino</span><span>Raspberry Pi</span><span>STM32</span><span>Autodesk TinkerCAD</span><span>Autodesk AutoCAD</span><span>Adobe Illustrator</span><span>Adobe Photoshop</span><span>Adobe Bridge</span></div><p>Outside engineering, I explore the outdoors and photograph architecture, wildlife and motorsports.</p></section>
-    <footer id="contact"><h2>Get in touch<span>.</span></h2><a href="mailto:moemenomar2006@gmail.com">Email ↗</a><a href="https://github.com/M02men0">GitHub ↗</a><a href="https://www.linkedin.com/in/mteeng/">LinkedIn ↗</a></footer>
-  </main>
+  <header>
+    <a class="brand" href="#top" aria-label="Moemen Elgazzar, home">me<span>.</span></a>
+    <nav aria-label="Main navigation"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+  </header>
+  <section class="hero" aria-labelledby="name">
+    <div class="intro"><small>Computer Engineering · University of Waterloo</small>
+      <h1 id="name">Moemen<br><i>Elgazzar</i><span>.</span></h1>
+      <p>I build software that touches hardware. My work ranges from Android apps for industrial devices to RFID systems on the production floor.</p>
+      <a class="button" href="#projects">Explore projects ↓</a>
+    </div>
+    <figure class="instrument">
+      <figcaption><small>Interactive circuit model</small><h2>Resonance bench</h2></figcaption>
+      <p>Change the coil inductance to tune an ideal LC circuit, inspired by my RFID antenna work.</p>
+      <div class="screen"><div class="readout"><span>Resonance</span><output id="frequency" for="coil">159.2 kHz</output></div>
+        <canvas id="wave" width="800" height="210" aria-label="One sinusoidal voltage trace across a 25 microsecond window"></canvas>
+        <div class="scale"><span>0 µs</span><span>25 µs</span></div>
+      </div>
+      <div class="controls" hidden><label for="coil">Coil inductance <output id="inductance" for="coil">100 µH</output></label>
+        <input type="range" id="coil" min="25" max="200" value="100" step="1">
+      </div><small class="capacitor">Capacitance fixed at 10 nF</small>
+    </figure>
+  </section>
+  <section id="projects"><div class="section-head"><h2>Selected projects</h2>
+    <div class="filters" role="group" aria-label="Filter projects" hidden>
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="software" aria-pressed="false">Software</button>
+      <button type="button" data-filter="embedded" aria-pressed="false">Embedded</button>
+      <button type="button" data-filter="robotics" aria-pressed="false">Robotics</button>
+    </div></div>
+    <span class="sr-only" role="status" id="project-count"></span>
+    <div class="cards">
+      <article data-area="embedded robotics"><div class="cardbody"><small>August 2026 · STM32 / I²C</small><h3>Quadcopter</h3><p>I designed a custom frame and flight-tested an STM32 flight controller. I tuned its PID controller using attitude measurements from an IMU.</p></div></article>
+      <article data-area="software robotics"><div class="cardbody"><small>July 2026 · Python / OpenCV</small><h3>Computer Vision Tracker</h3><p>I built a real-time YOLO26n detector that reports object classes, confidence and coordinates, and a separate color-tracking prototype using HSV segmentation.</p></div></article>
+      <article data-area="software"><div class="cardbody"><small>March–May 2026 · JavaScript / CSS</small><h3><a href="https://github.com/M02men0/doomBloc">doomBloc ↗</a></h3><p>A Chrome extension that hides YouTube Shorts and other distractions. Reusable rules respond as content loads, across free and Premium accounts.</p></div></article>
+      <article data-area="embedded software"><img loading="lazy" src="src/assets/gallery/Pi.jpg" alt="Athan Pi hardware"><div class="cardbody"><small>Raspberry Pi · Python</small><h3><a href="https://github.com/M02men0/athanPi">Athan Pi ↗</a></h3><p>A Raspberry Pi Zero 2 W running Python on Linux plays the athan and reminders at scheduled times.</p></div></article>
+      <article data-area="embedded"><img loading="lazy" src="src/assets/gallery/Schem.png" alt="Smart-Water circuit schematic"><div class="cardbody"><small>STM32 · Schematic design</small><h3><a href="https://github.com/SenthilShelke/Smart-Water">Smart-Water ↗</a></h3><p>An STM32 microcontroller automates plant watering.</p></div></article>
+      <article data-area="robotics"><img loading="lazy" src="src/assets/gallery/robot.jpg" alt="FIRST Global robot"><div class="cardbody"><small>2019 · Robotics</small><h3>FIRST Global · Team Kuwait</h3><p>I represented Kuwait at the Ocean Opportunities robotics challenge in Dubai.</p></div></article>
+    </div>
+  </section>
+  <section id="experience"><h2>Experience & education</h2>
+    <details open><summary><div><small>May–August 2026 · Kitchener, ON</small><h3>Prometheus Industries</h3><p>Software & Hardware Engineering Co-op</p></div></summary>
+      <div class="detail"><p>I built RFID-enabled industrial maintenance systems at Prometheus, a Velocity incubator company.</p>
+        <ul><li>Designed an RFID nozzle and tag system in Onshape, validated it with an LCR meter and oscilloscope, and brought it to production.</li>
+        <li>Built an antenna-tuning rig and introduced a tag production workflow that cut manual labor by over 40%.</li>
+        <li>Developed Android interfaces, backend integrations and AWS S3 link handling. I used ADB and Logcat on production hardware and coordinated Samsung Knox SDK access for device migration.</li></ul>
+      </div></details>
+    <details><summary><div><small>Expected August 2030 · Waterloo, ON</small><h3>University of Waterloo</h3><p>BASc in Computer Engineering (Co-op)</p></div></summary>
+      <div class="detail"><p>Coursework includes Algorithms and Data Structures, Digital Computers, Digital Circuits and Systems, and Electronic Circuits.</p><a href="https://uwaterloo.ca/">University website ↗</a></div></details>
+  </section>
+  <section id="skills"><h2>Technical skills</h2><dl class="skills">
+    <dt>Programming</dt><dd>C, C++, Python, Java, JavaScript, HTML and CSS</dd>
+    <dt>Software</dt><dd>Android Studio, ADB, Gradle, Logcat, Samsung Knox SDK, React, Vite, Node.js, AWS S3, Chrome extensions, Git and Linux</dd>
+    <dt>Embedded & control</dt><dd>STM32, Arduino, Raspberry Pi, RFID, UART, I²C, embedded Linux, PID control and IMU-based stabilization</dd>
+    <dt>Vision & electronics</dt><dd>OpenCV, real-time image processing, PCB bring-up, soldering and circuit debugging</dd>
+    <dt>Design & fabrication</dt><dd>Onshape, Autodesk Fusion, KiCad, 3D printing and prototyping</dd>
+  </dl></section>
+  <footer id="contact"><img class="avatar" src="src/assets/gallery/Selfie_01.JPG" alt="Moemen Elgazzar" loading="lazy"><h2>Get in touch<span>.</span></h2>
+    <p>Outside engineering, I explore the outdoors and photograph architecture, wildlife and motorsports.</p>
+    <div class="link-row"><a href="mailto:moemen.o.elgazzar@gmail.com">Email ↗</a><a href="https://github.com/M02men0">GitHub ↗</a><a href="https://www.linkedin.com/in/mteeng/">LinkedIn ↗</a></div>
+    <div class="link-row"><a href="public/files/Moemen_SW.pdf">Software résumé (PDF)</a><a href="public/files/Moemen_EM.pdf">Embedded résumé (PDF)</a></div>
+  </footer>
+</main>
 </body>
 </html>
