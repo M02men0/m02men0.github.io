@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Portfolio editor · Moemen Elgazzar</title>
+  <link rel="stylesheet" href="/editor.css">
+  <script type="module" src="/editor.js"></script>
+</head>
+<body>
+<main>
+  <header><a href="https://m02men0.github.io/">← Portfolio</a>
+    <form id="sign-out" action="/auth/logout" method="post" hidden><button>Sign out</button></form>
+  </header>
+  <h1>Portfolio editor</h1>
+  <p id="status" role="status">Checking your GitHub session…</p>
+  <a id="sign-in" class="primary" href="/auth/login" hidden>Sign in with GitHub</a>
+
+  <form id="workspace" hidden>
+    <fieldset id="workspace-controls">
+      <div class="layout">
+        <aside aria-label="Project list">
+          <button id="add-project" type="button">Add project</button>
+          <ul id="list"></ul>
+        </aside>
+        <div id="details"><p>Select a project or add a new one.</p></div>
+      </div>
+      <div class="actions"><p>Publishing updates GitHub Pages. Hidden project files are still visible in the public repository.</p>
+        <button class="primary" id="publish">Publish changes</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <template id="fields">
+    <div class="form-heading"><h2>Project details</h2><button class="danger" type="button" data-remove>Remove project</button></div>
+    <label><input type="checkbox" name="visible"> Show on portfolio</label>
+    <label>Title <input type="text" name="title" maxlength="120" required></label>
+    <label>Subtitle <input type="text" name="subtitle" maxlength="140"></label>
+    <label>Description <textarea name="description" rows="6" maxlength="3000" required></textarea></label>
+    <label>Project link <input type="url" name="url" maxlength="1000" placeholder="https://"></label>
+    <fieldset class="categories"><legend>Categories</legend>
+      <label><input type="checkbox" name="areas" value="software"> Software</label>
+      <label><input type="checkbox" name="areas" value="embedded"> Embedded</label>
+      <label><input type="checkbox" name="areas" value="robotics"> Robotics</label>
+    </fieldset>
+    <div class="photos"><h3>Project photos</h3><div id="photos"></div>
+      <label>Add photos (JPEG, PNG or WebP, up to 5 MB each)
+        <input id="files" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+      </label>
+    </div>
+  </template>
+</main>
+</body>
+</html>

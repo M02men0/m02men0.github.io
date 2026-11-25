@@ -78,3 +78,17 @@ footer h2 { margin-bottom: 12px; }
   .skills dt { padding-bottom: 2px; }
   .skills dd { padding-top: 2px; border: none; }
 }
+
+.project-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.project-gallery img {
+  display: block;
+  flex: 0 0 100%;
+  min-width: 0;
+  aspect-ratio: 1.65;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
