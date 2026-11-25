@@ -78,7 +78,7 @@
     "subtitle": "2019 · Robotics",
     "description": "I represented Kuwait at the Ocean Opportunities robotics challenge in Dubai.",
     "url": "",
-    "visible": true,
+    "visible": false,
     "areas": [
       "robotics"
     ],
