@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import test from 'node:test';
-import worker from './worker.mjs';
+import backend from './backend.mjs';
 import {renderPortfolio} from './projects.mjs';
 
 const currentSource = readFileSync(new URL('../content/projects.json', import.meta.url), 'utf8');
@@ -13,6 +13,7 @@ const fixture = ['Test quadcopter', 'Test tracker'].map((title, id) => ({
 const source = JSON.stringify(fixture, null, 2) + '\n';
 const index = renderPortfolio(currentIndex, fixture);
 const env = {
+  EDITOR_ORIGIN: 'https://editor.example.com',
   GITHUB_REPOSITORY: 'M02men0/m02men0.github.io',
   GITHUB_BRANCH: 'main',
   GITHUB_OWNER_ID: '98442887',
@@ -24,24 +25,33 @@ const origin = 'https://editor.example.com';
 const revision = 'a'.repeat(40);
 const nextRevision = 'b'.repeat(40);
 
-const invoke = (path, init) => worker.fetch(new Request(origin + path, init), env);
+const invoke = (path, init) => backend.fetch(new Request(origin + path, init), env);
 const extractCookie = (response, name) => response.headers.getSetCookie()
   .find(value => value.startsWith(name + '='))?.split(';')[0];
 
 async function oauth() {
-  const response = await invoke('/auth/login');
+  const response = await invoke('/api/portfolio/login');
   assert.equal(response.status, 303);
   assert.match(response.headers.getSetCookie()[0], /HttpOnly; Secure; SameSite=Lax/);
   const target = new URL(response.headers.get('Location'));
   assert.equal(target.host, 'github.com');
   assert.equal(target.searchParams.get('code_challenge_method'), 'S256');
+  assert.equal(target.searchParams.get('redirect_uri'), origin + '/api/portfolio/callback');
   const proof = extractCookie(response, '__Host-portfolio_oauth');
-  return state => invoke('/auth/callback?code=test-code&state=' + (state || target.searchParams.get('state')),
+  return state => invoke('/api/portfolio/callback?code=test-code&state=' + (state || target.searchParams.get('state')),
     {headers: {Cookie: proof}});
 }
 
 test('the published cards match the project data', () => {
   assert.equal(renderPortfolio(currentIndex, JSON.parse(currentSource)), currentIndex);
+});
+
+test('only the production origin can use the editor and sign-in requires configuration', async () => {
+  const request = new Request(origin + '/api/portfolio/projects');
+  const wrongOrigin = await backend.fetch(request, {...env, EDITOR_ORIGIN: 'https://production.example.com'});
+  assert.equal(wrongOrigin.status, 421);
+  assert.equal((await wrongOrigin.json()).editorUrl, 'https://production.example.com/admin/');
+  assert.equal((await backend.fetch(request, {...env, SESSION_KEY: undefined})).status, 503);
 });
 
 test('login and publishing enforce account ownership, origin, revision, and atomic writes', async t => {
@@ -84,29 +94,29 @@ test('login and publishing enforce account ownership, origin, revision, and atom
     throw new Error('Unexpected GitHub call ' + url.pathname);
   });
 
-  const missing = await invoke('/api/projects');
+  const missing = await invoke('/api/portfolio/projects');
   assert.equal(missing.status, 401);
-  assert.equal((await invoke('/api/projects', {method: 'POST', headers: {Origin: origin}})).status, 401);
+  assert.equal((await invoke('/api/portfolio/projects', {method: 'POST', headers: {Origin: origin}})).status, 401);
 
   const denied = await oauth();
-  assert.equal((await denied('wrong-state')).headers.get('Location'), '/?auth=retry');
+  assert.equal((await denied('wrong-state')).headers.get('Location'), '/admin/?auth=retry');
   assert.equal(exchanges, 0);
-  assert.equal((await denied()).headers.get('Location'), '/?auth=denied');
+  assert.equal((await denied()).headers.get('Location'), '/admin/?auth=denied');
   account = Number(env.GITHUB_OWNER_ID);
   const allowed = await oauth();
   const authorized = await allowed();
-  assert.equal(authorized.headers.get('Location'), '/');
+  assert.equal(authorized.headers.get('Location'), '/admin/');
   const cookie = extractCookie(authorized, '__Host-portfolio_session');
   assert.ok(cookie && !cookie.includes('server-only-token'));
-  assert.equal((await invoke('/api/projects', {headers: {Cookie: cookie + 'tampered'}})).status, 401);
+  assert.equal((await invoke('/api/portfolio/projects', {headers: {Cookie: cookie + 'tampered'}})).status, 401);
 
-  const existing = await invoke('/api/projects', {headers: {Cookie: cookie}});
+  const existing = await invoke('/api/portfolio/projects', {headers: {Cookie: cookie}});
   assert.equal(existing.status, 200);
   const {projects} = await existing.json();
   assert.deepEqual(projects, fixture);
 
   const publish = (body, referer = origin) =>
-    invoke('/api/projects', {method: 'POST', headers: {Cookie: cookie, Origin: referer}, body});
+    invoke('/api/portfolio/projects', {method: 'POST', headers: {Cookie: cookie, Origin: referer}, body});
   const form = new FormData();
   form.set('revision', revision);
   projects[0].visible = false;
@@ -117,6 +127,11 @@ test('login and publishing enforce account ownership, origin, revision, and atom
   form.append('photo:' + upload, new Blob([new Uint8Array([255, 216, 255, 224])]), 'photo.jpg');
 
   assert.equal((await publish(form, 'https://elsewhere.example')).status, 403);
+  const oversized = new FormData();
+  oversized.set('revision', revision);
+  oversized.set('projects', JSON.stringify(projects));
+  oversized.append('photo:' + upload, new Blob([new Uint8Array(4_400_000)]), 'large.jpg');
+  assert.equal((await publish(oversized)).status, 413);
   const saved = await publish(form);
   assert.equal(saved.status, 200);
   assert.equal((await saved.json()).revision, nextRevision);

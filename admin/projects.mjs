@@ -1,5 +1,6 @@
 export const categories = ['software', 'embedded', 'robotics'];
-export const maxPhotoBytes = 5 * 1024 * 1024;
+export const maxPhotoBytes = 4_000_000;
+export const maxRequestBytes = 4_400_000;
 export const projectContent = 'content/projects.json';
 export const photoFolder = 'public/assets/projects/';
 

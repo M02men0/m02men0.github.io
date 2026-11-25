@@ -1,3 +1,5 @@
+import {maxPhotoBytes, maxRequestBytes} from '../projects.mjs';
+
 const get = selector => document.querySelector(selector);
 const workspace = get('#workspace');
 const controls = get('#workspace-controls');
@@ -125,12 +127,12 @@ function renderProject(id) {
       return;
     }
     if (files.some(file => !['image/jpeg', 'image/png', 'image/webp'].includes(file.type) ||
-      !file.size || file.size > 5 * 1024 * 1024)) {
-      status.textContent = 'Choose JPEG, PNG or WebP photos up to 5 MB each.';
+      !file.size || file.size > maxPhotoBytes)) {
+      status.textContent = 'Choose JPEG, PNG or WebP photos up to 4 MB each.';
       return;
     }
-    if (size + files.reduce((total, file) => total + file.size, 0) > 15 * 1024 * 1024) {
-      status.textContent = 'Upload up to 15 MB of photos at a time.';
+    if (size + files.reduce((total, file) => total + file.size, 0) > maxPhotoBytes) {
+      status.textContent = 'Upload up to 4 MB of photos per publish.';
       return;
     }
     for (const file of files) {
@@ -146,7 +148,20 @@ function renderProject(id) {
 
 async function load() {
   try {
-    const response = await fetch('/api/projects');
+    const response = await fetch('/api/portfolio/projects');
+    const productionEditor = get('#production-editor');
+    if (response.status === 404 && location.hostname.endsWith('.github.io')) {
+      productionEditor.hidden = false;
+      status.textContent = 'Manage your projects on the Vercel deployment.';
+      return;
+    }
+    if (response.status === 421) {
+      const {editorUrl} = await response.json();
+      productionEditor.href = editorUrl;
+      productionEditor.hidden = false;
+      status.textContent = 'Open the production editor to sign in.';
+      return;
+    }
     if (response.status === 401) {
       get('#sign-in').hidden = false;
       const problem = new URLSearchParams(location.search).get('auth');
@@ -188,21 +203,30 @@ workspace.addEventListener('submit', async event => {
     status.textContent = 'Each project needs a title, description, category and alt text for every photo.';
     return;
   }
+  const payload = JSON.stringify(projects);
+  const photoBytes = [...pending.values()].reduce((total, {file}) => total + file.size, 0);
+  // Leave room for multipart boundaries, file headers, and the revision field.
+  const estimatedBytes = new Blob([payload]).size + photoBytes + pending.size * 2048 + 2048;
+  if (estimatedBytes > maxRequestBytes) {
+    status.textContent = 'Reduce the size of your photos or publish them in smaller batches.';
+    return;
+  }
   const form = new FormData();
   form.set('revision', revision);
-  form.set('projects', JSON.stringify(projects));
+  form.set('projects', payload);
   for (const [id, {file}] of pending) form.append('photo:' + id, file);
   controls.disabled = true;
   status.textContent = 'Publishing to GitHub…';
   try {
-    const response = await fetch('/api/projects', {method: 'POST', body: form});
+    const response = await fetch('/api/portfolio/projects', {method: 'POST', body: form});
+    if (response.status === 413) throw new Error('The upload is too large. Publish fewer photos at a time.');
     const data = await response.json();
     if (!response.ok) throw new Error(data.error);
     ({revision, projects} = data);
     for (const id of pending.keys()) discardUpload(id);
     setDirty(false);
     renderProject(currentId);
-    status.textContent = data.published ? 'Saved to GitHub. GitHub Pages will deploy the changes shortly.' : 'No changes to publish.';
+    status.textContent = data.published ? 'Saved to GitHub. The portfolio will update after deployment.' : 'No changes to publish.';
   } catch (error) {
     status.textContent = error.message || 'Publishing failed. Your edits are still open.';
   } finally {

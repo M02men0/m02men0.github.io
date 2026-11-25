@@ -25,6 +25,6 @@ dist-ssr
 .github
 
 # Local portfolio editor credentials
-.dev.vars
-.dev.vars.*
-.wrangler/
+.vercel/
+.env
+.env.*
