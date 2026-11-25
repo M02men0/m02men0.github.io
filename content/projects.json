@@ -43,7 +43,7 @@
     "subtitle": "Raspberry Pi · Python",
     "description": "A Raspberry Pi Zero 2 W running Python on Linux plays the athan and reminders at scheduled times.",
     "url": "https://github.com/M02men0/athanPi",
-    "visible": true,
+    "visible": false,
     "areas": [
       "embedded",
       "software"
@@ -61,7 +61,7 @@
     "subtitle": "STM32 · Schematic design",
     "description": "An STM32 microcontroller automates plant watering.",
     "url": "https://github.com/SenthilShelke/Smart-Water",
-    "visible": true,
+    "visible": false,
     "areas": [
       "embedded"
     ],
