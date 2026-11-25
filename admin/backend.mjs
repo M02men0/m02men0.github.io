@@ -1,10 +1,9 @@
-import {maxPhotoBytes, photoExtension, photoFolder, projectContent, renderPortfolio, validateProjects} from './projects.mjs';
+import {maxPhotoBytes, maxRequestBytes, photoExtension, photoFolder, projectContent, renderPortfolio, validateProjects} from './projects.mjs';
 
 const sessionName = '__Host-portfolio_session';
 const stateName = '__Host-portfolio_oauth';
 const utf8 = new TextEncoder();
 const decoder = new TextDecoder();
-const maxRequestBytes = 16 * 1024 * 1024;
 
 class RequestError extends Error {
   constructor(status, message) {
@@ -87,7 +86,7 @@ async function startLogin(origin, env) {
   const challenge = url64(new Uint8Array(await crypto.subtle.digest('SHA-256', utf8.encode(verifier))));
   const authorize = new URL('https://github.com/login/oauth/authorize');
   authorize.search = new URLSearchParams({
-    client_id: env.GITHUB_CLIENT_ID, state, redirect_uri: origin + '/auth/callback',
+    client_id: env.GITHUB_CLIENT_ID, state, redirect_uri: origin + '/api/portfolio/callback',
     code_challenge: challenge, code_challenge_method: 'S256'
   });
   const proof = await seal({state, verifier, expires: Date.now() + 600_000}, stateName, env);
@@ -123,27 +122,27 @@ async function finishLogin(request, url, env) {
   const proof = await unseal(request, stateName, env);
   const code = url.searchParams.get('code');
   if (!proof || !code || proof.state !== url.searchParams.get('state')) {
-    return redirect('/?auth=retry', [removeState]);
+    return redirect('/admin/?auth=retry', [removeState]);
   }
   try {
     const response = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST', redirect: 'error', headers: {Accept: 'application/json'},
       body: new URLSearchParams({
         client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET,
-        code, code_verifier: proof.verifier, redirect_uri: url.origin + '/auth/callback'
+        code, code_verifier: proof.verifier, redirect_uri: url.origin + '/api/portfolio/callback'
       })
     });
     const {access_token: token, expires_in: lifetime} = await response.json();
-    if (!response.ok || !token) return redirect('/?auth=retry', [removeState]);
+    if (!response.ok || !token) return redirect('/admin/?auth=retry', [removeState]);
     const user = await github('/user', token);
     if (String(user.id) !== env.GITHUB_OWNER_ID) {
-      return redirect('/?auth=denied', [removeState, cookie(sessionName, '', 0)]);
+      return redirect('/admin/?auth=denied', [removeState, cookie(sessionName, '', 0)]);
     }
     const age = Math.min(3600, Number(lifetime) || 3600);
     const session = await seal({id: String(user.id), token, expires: Date.now() + age * 1000}, sessionName, env);
-    return redirect('/', [removeState, cookie(sessionName, session, age)]);
+    return redirect('/admin/', [removeState, cookie(sessionName, session, age)]);
   } catch {
-    return redirect('/?auth=retry', [removeState]);
+    return redirect('/admin/?auth=retry', [removeState]);
   }
 }
 
@@ -177,13 +176,13 @@ async function readForm(request) {
     throw new RequestError(400, 'Expected a multipart project update.');
   }
   if (Number(request.headers.get('Content-Length')) > maxRequestBytes) {
-    throw new RequestError(413, 'Upload up to 15 MB of photos at a time.');
+    throw new RequestError(413, 'Reduce the size of your photos or publish them in smaller batches.');
   }
   let size = 0;
   const limited = request.body.pipeThrough(new TransformStream({
     transform(chunk, controller) {
       size += chunk.byteLength;
-      if (size > maxRequestBytes) controller.error(new RequestError(413, 'Upload up to 15 MB of photos at a time.'));
+      if (size > maxRequestBytes) controller.error(new RequestError(413, 'Reduce the size of your photos or publish them in smaller batches.'));
       else controller.enqueue(chunk);
     }
   }));
@@ -211,10 +210,10 @@ async function publish(request, repo) {
     const id = key.replace(/^photo:/, '');
     if (!/^photo:[a-f0-9-]{36}$/.test(key) || uploaded.has(id) ||
       typeof file === 'string' || !file.size || file.size > maxPhotoBytes) {
-      throw new RequestError(400, 'Upload JPEG, PNG or WebP photos up to 5 MB each.');
+      throw new RequestError(400, 'Upload JPEG, PNG or WebP photos up to 4 MB each.');
     }
     total += file.size;
-    if (total > 15 * 1024 * 1024) throw new RequestError(413, 'Upload up to 15 MB of photos at a time.');
+    if (total > maxPhotoBytes) throw new RequestError(413, 'Reduce the size of your photos or publish them in smaller batches.');
     const bytes = new Uint8Array(await file.arrayBuffer());
     const extension = photoExtension(bytes);
     if (!extension) throw new RequestError(400, 'Use a JPEG, PNG or WebP photo.');
@@ -245,36 +244,36 @@ async function publish(request, repo) {
   return json({revision: await repo.publish(revision, files), projects, published: true});
 }
 
+function configured(env) {
+  return Boolean(env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET && env.SESSION_KEY);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
       const {pathname} = url;
+      if (url.origin !== env.EDITOR_ORIGIN) {
+        return json({error: 'Open the production portfolio editor to sign in.', editorUrl: env.EDITOR_ORIGIN + '/admin/'}, 421);
+      }
       if (request.method === 'POST' && request.headers.get('Origin') !== url.origin) {
         throw new RequestError(403, 'Open the editor directly before changing the portfolio.');
       }
-      if (pathname === '/auth/login' && request.method === 'GET') return await startLogin(url.origin, env);
-      if (pathname === '/auth/callback' && request.method === 'GET') return await finishLogin(request, url, env);
-      if (pathname === '/auth/logout' && request.method === 'POST') return redirect('/', [cookie(sessionName, '', 0)]);
-      if (pathname.startsWith('/api/')) {
+      if (!configured(env)) {
+        throw new RequestError(503, 'The editor is waiting for GitHub sign-in to be configured.');
+      }
+      if (pathname === '/api/portfolio/login' && request.method === 'GET') return await startLogin(url.origin, env);
+      if (pathname === '/api/portfolio/callback' && request.method === 'GET') return await finishLogin(request, url, env);
+      if (pathname === '/api/portfolio/logout' && request.method === 'POST') return redirect('/admin/', [cookie(sessionName, '', 0)]);
+      if (pathname === '/api/portfolio/projects') {
         const session = await unseal(request, sessionName, env);
         if (!session || session.id !== env.GITHUB_OWNER_ID) throw new RequestError(401, 'Sign in with GitHub to edit.');
         const repo = repository(env, session.token);
-        if (pathname === '/api/projects') {
-          if (request.method === 'GET') {
-            const revision = await repo.getHead();
-            return json({revision, projects: JSON.parse(await repo.read(projectContent, revision))});
-          }
-          if (request.method === 'POST') return await publish(request, repo);
+        if (request.method === 'GET') {
+          const revision = await repo.getHead();
+          return json({revision, projects: JSON.parse(await repo.read(projectContent, revision))});
         }
-        return json({error: 'This editor endpoint does not exist.'}, 404);
-      }
-      // Explicit allowlist keeps the public asset surface independent from the repository.
-      if (request.method === 'GET' && ['/', '/editor.css', '/editor.js'].includes(pathname)) {
-        const asset = await env.ASSETS.fetch(request);
-        const headers = new Headers(asset.headers);
-        for (const [key, value] of Object.entries(security)) headers.set(key, value);
-        return new Response(asset.body, {status: asset.status, headers});
+        if (request.method === 'POST') return await publish(request, repo);
       }
       return json({error: 'Page not found.'}, 404);
     } catch (err) {
