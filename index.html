@@ -23,17 +23,7 @@
       <p>I build software that touches hardware. My work ranges from Android apps for industrial devices to RFID systems on the production floor.</p>
       <a class="button" href="#projects">Explore projects ↓</a>
     </div>
-    <figure class="instrument">
-      <figcaption><small>Interactive circuit model</small><h2>Resonance bench</h2></figcaption>
-      <p>Change the coil inductance to tune an ideal LC circuit, inspired by my RFID antenna work.</p>
-      <div class="screen"><div class="readout"><span>Resonance</span><output id="frequency" for="coil">159.2 kHz</output></div>
-        <canvas id="wave" width="800" height="210" aria-label="One sinusoidal voltage trace across a 25 microsecond window"></canvas>
-        <div class="scale"><span>0 µs</span><span>25 µs</span></div>
-      </div>
-      <div class="controls" hidden><label for="coil">Coil inductance <output id="inductance" for="coil">100 µH</output></label>
-        <input type="range" id="coil" min="25" max="200" value="100" step="1">
-      </div><small class="capacitor">Capacitance fixed at 10 nF</small>
-    </figure>
+    <canvas class="wireframe" width="720" height="540" aria-hidden="true" hidden></canvas>
   </section>
   <section id="projects"><div class="section-head"><h2>Selected projects</h2>
     <div class="filters" role="group" aria-label="Filter projects" hidden>
@@ -69,7 +59,7 @@
     <dt>Vision & electronics</dt><dd>OpenCV, real-time image processing, PCB bring-up, soldering and circuit debugging</dd>
     <dt>Design & fabrication</dt><dd>Onshape, Autodesk Fusion, KiCad, 3D printing and prototyping</dd>
   </dl></section>
-  <footer id="contact"><img class="avatar" src="src/assets/gallery/Selfie_01.JPG" alt="Moemen Elgazzar" loading="lazy"><h2>Get in touch<span>.</span></h2>
+  <footer id="contact"><h2>Get in touch<span>.</span></h2>
     <p>Outside engineering, I explore the outdoors and photograph architecture, wildlife and motorsports.</p>
     <div class="link-row"><a href="mailto:moemen.o.elgazzar@gmail.com">Email ↗</a><a href="https://github.com/M02men0">GitHub ↗</a><a href="https://www.linkedin.com/in/mteeng/">LinkedIn ↗</a></div>
     <div class="link-row"><a href="public/files/Moemen_SW.pdf">Software résumé (PDF)</a><a href="public/files/Moemen_EM.pdf">Embedded résumé (PDF)</a></div>
