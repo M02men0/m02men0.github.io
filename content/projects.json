@@ -1,0 +1,92 @@
+[
+  {
+    "id": "quadcopter",
+    "title": "Quadcopter",
+    "subtitle": "August 2026 · STM32 / I²C",
+    "description": "I designed a custom frame and flight-tested an STM32 flight controller. I tuned its PID controller using attitude measurements from an IMU.",
+    "url": "",
+    "visible": true,
+    "areas": [
+      "embedded",
+      "robotics"
+    ],
+    "photos": []
+  },
+  {
+    "id": "computer-vision-tracker",
+    "title": "Computer Vision Tracker",
+    "subtitle": "July 2026 · Python / OpenCV",
+    "description": "I built a real-time YOLO26n detector that reports object classes, confidence and coordinates, and a separate color-tracking prototype using HSV segmentation.",
+    "url": "",
+    "visible": true,
+    "areas": [
+      "software",
+      "robotics"
+    ],
+    "photos": []
+  },
+  {
+    "id": "doombloc",
+    "title": "doomBloc",
+    "subtitle": "March–May 2026 · JavaScript / CSS",
+    "description": "A Chrome extension that hides YouTube Shorts and other distractions. Reusable rules respond as content loads, across free and Premium accounts.",
+    "url": "https://github.com/M02men0/doomBloc",
+    "visible": true,
+    "areas": [
+      "software"
+    ],
+    "photos": []
+  },
+  {
+    "id": "athan-pi",
+    "title": "Athan Pi",
+    "subtitle": "Raspberry Pi · Python",
+    "description": "A Raspberry Pi Zero 2 W running Python on Linux plays the athan and reminders at scheduled times.",
+    "url": "https://github.com/M02men0/athanPi",
+    "visible": true,
+    "areas": [
+      "embedded",
+      "software"
+    ],
+    "photos": [
+      {
+        "path": "src/assets/gallery/Pi.jpg",
+        "alt": "Athan Pi hardware"
+      }
+    ]
+  },
+  {
+    "id": "smart-water",
+    "title": "Smart-Water",
+    "subtitle": "STM32 · Schematic design",
+    "description": "An STM32 microcontroller automates plant watering.",
+    "url": "https://github.com/SenthilShelke/Smart-Water",
+    "visible": true,
+    "areas": [
+      "embedded"
+    ],
+    "photos": [
+      {
+        "path": "src/assets/gallery/Schem.png",
+        "alt": "Smart-Water circuit schematic"
+      }
+    ]
+  },
+  {
+    "id": "first-global-team-kuwait",
+    "title": "FIRST Global · Team Kuwait",
+    "subtitle": "2019 · Robotics",
+    "description": "I represented Kuwait at the Ocean Opportunities robotics challenge in Dubai.",
+    "url": "",
+    "visible": true,
+    "areas": [
+      "robotics"
+    ],
+    "photos": [
+      {
+        "path": "src/assets/gallery/robot.jpg",
+        "alt": "FIRST Global robot"
+      }
+    ]
+  }
+]

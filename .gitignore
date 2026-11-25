@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 .github
+
+# Local portfolio editor credentials
+.dev.vars
+.dev.vars.*
+.wrangler/
