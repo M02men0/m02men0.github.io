@@ -10,8 +10,7 @@ header{justify-content:space-between;border-bottom:1px solid #bdc6bc;padding:16p
 nav{gap:clamp(14px,3vw,40px)}
 a{color:inherit;text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:4px}
-html{scroll-snap-type:y proximity}
-header,main>section:not(.hero),main>footer{scroll-snap-align:start}
+html{scroll-behavior:smooth}
 .hero{padding:clamp(52px, 8vw, 108px) 0}
 .hero .intro{
   display:grid;grid-template-columns:minmax(0, 1.45fr) minmax(0, 1fr);
@@ -40,7 +39,7 @@ h3{font-size:1.5rem;margin:9px 0}
 .cards>article{
   flex:0 0 100%;min-width:0;min-height:clamp(320px, 36vw, 450px);
   display:flex;align-items:stretch;
-  scroll-snap-align:start;scroll-snap-stop:always;
+  scroll-snap-align:start;
   border:1px solid #ced3c9;border-radius:12px;overflow:hidden;background:#fdfdf8;
 }
 .cards>article>img,.cards .project-gallery{flex:0 0 50%;width:50%;min-width:0}
@@ -127,5 +126,5 @@ footer h2 { margin-bottom: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-snap-type: none; }
+  html { scroll-behavior: auto; }
 }
