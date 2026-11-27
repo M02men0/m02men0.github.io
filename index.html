@@ -23,9 +23,8 @@
       <p>I build software that touches hardware. My work ranges from Android apps for industrial devices to RFID systems on the production floor.</p>
       <a class="button" href="#projects">Explore projects ↓</a>
     </div>
-    <canvas class="wireframe" width="720" height="540" aria-hidden="true" hidden></canvas>
   </section>
-  <section id="projects"><div class="section-head"><h2>Selected projects</h2>
+  <section id="projects"><div class="section-head"><h2 id="projects-heading">Selected projects</h2>
     <div class="filters" role="group" aria-label="Filter projects" hidden>
       <button type="button" data-filter="all" aria-pressed="true">All</button>
       <button type="button" data-filter="software" aria-pressed="false">Software</button>
@@ -33,12 +32,18 @@
       <button type="button" data-filter="robotics" aria-pressed="false">Robotics</button>
     </div></div>
     <span class="sr-only" role="status" id="project-count"></span>
-    <div class="cards">
+    <div class="cards" id="project-cards" role="region" aria-labelledby="projects-heading" tabindex="0">
       <!-- projects:start -->
       <article data-area="embedded robotics"><div class="cardbody"><small>August 2026 · STM32 / I²C</small><h3>Quadcopter</h3><p>I designed a custom frame and flight-tested an STM32 flight controller. I tuned its PID controller using attitude measurements from an IMU.</p></div></article>
       <article data-area="software robotics"><div class="cardbody"><small>July 2026 · Python / OpenCV</small><h3>Computer Vision Tracker</h3><p>I built a real-time YOLO26n detector that reports object classes, confidence and coordinates, and a separate color-tracking prototype using HSV segmentation.</p></div></article>
       <article data-area="software"><div class="cardbody"><small>March–May 2026 · JavaScript / CSS</small><h3><a href="https://github.com/M02men0/doomBloc">doomBloc ↗</a></h3><p>A Chrome extension that hides YouTube Shorts and other distractions. Reusable rules respond as content loads, across free and Premium accounts.</p></div></article>
       <!-- projects:end -->
+    </div>
+    <p id="no-matching-projects" hidden>No projects in this category.</p>
+    <div class="carousel-controls" role="group" aria-label="Project navigation" hidden>
+      <button type="button" id="previous-project" aria-controls="project-cards" aria-disabled="true">← Previous</button>
+      <span id="project-position" aria-live="polite" aria-atomic="true"></span>
+      <button type="button" id="next-project" aria-controls="project-cards">Next →</button>
     </div>
   </section>
   <section id="experience"><h2>Experience & education</h2>
